@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2026-09-11
+
+- Send P2PK login and PTZ requests through the verified IOTLink `0x13` DATA
+  envelope used by the successful direct-camera probes.
+- Retain support for receiving both `0x13` and `0x2B` response envelopes.
+
 ## 0.1.0 - 2026-09-11
 
 - Initial HACS-compatible release.
