@@ -1,16 +1,18 @@
 """Constants for EseeCloud Local PTZ."""
 
 DOMAIN = "eseecloud_ptz"
-PLATFORMS = ["button"]
+PLATFORMS = ["button", "camera"]
 
 CONF_UID = "uid"
 CONF_DERIVED_CREDENTIAL = "derived_credential"
 CONF_PROFILE = "profile"
 CONF_DURATION = "duration"
+CONF_GO2RTC_STREAM_URL = "go2rtc_stream_url"
 
 DEFAULT_PORT = 10000
 DEFAULT_USERNAME = "admin"
 DEFAULT_DURATION = 0.5
+DEFAULT_GO2RTC_STREAM_URL = ""
 MIN_DURATION = 0.1
 MAX_DURATION = 3.0
 
@@ -35,4 +37,3 @@ SERVICE_MOVE = "move"
 ATTR_CONFIG_ENTRY_ID = "config_entry_id"
 ATTR_DIRECTION = "direction"
 ATTR_DURATION = "duration"
-

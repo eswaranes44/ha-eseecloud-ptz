@@ -12,7 +12,8 @@
           "uid": "Numeric ESEE UID",
           "username": "Camera username",
           "derived_credential": "32-character derived credential",
-          "profile": "Protocol profile"
+          "profile": "Protocol profile",
+          "go2rtc_stream_url": "go2rtc RTSP stream URL (optional)"
         }
       }
     },
@@ -29,10 +30,10 @@
       "init": {
         "title": "PTZ movement options",
         "data": {
-          "duration": "Default movement duration"
+          "duration": "Default movement duration",
+          "go2rtc_stream_url": "go2rtc RTSP stream URL"
         }
       }
     }
   }
 }
-

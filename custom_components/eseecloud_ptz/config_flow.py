@@ -29,9 +29,11 @@ from .client import (
 from .const import (
     CONF_DERIVED_CREDENTIAL,
     CONF_DURATION,
+    CONF_GO2RTC_STREAM_URL,
     CONF_PROFILE,
     CONF_UID,
     DEFAULT_DURATION,
+    DEFAULT_GO2RTC_STREAM_URL,
     DEFAULT_PORT,
     DEFAULT_USERNAME,
     DOMAIN,
@@ -62,6 +64,14 @@ def _schema(defaults: dict | None = None) -> vol.Schema:
                 SelectSelectorConfig(
                     options=list(PROFILES), mode=SelectSelectorMode.DROPDOWN
                 )
+            ),
+            vol.Optional(
+                CONF_GO2RTC_STREAM_URL,
+                default=defaults.get(
+                    CONF_GO2RTC_STREAM_URL, DEFAULT_GO2RTC_STREAM_URL
+                ),
+            ): TextSelector(
+                TextSelectorConfig(type=TextSelectorType.TEXT)
             ),
         }
     )
@@ -119,6 +129,10 @@ class EseeCloudOptionsFlow(config_entries.OptionsFlow):
     async def async_step_init(self, user_input: dict | None = None) -> FlowResult:
         if user_input is not None:
             return self.async_create_entry(title="", data=user_input)
+        current_stream_url = self.entry.options.get(
+            CONF_GO2RTC_STREAM_URL,
+            self.entry.data.get(CONF_GO2RTC_STREAM_URL, DEFAULT_GO2RTC_STREAM_URL),
+        )
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema(
@@ -134,8 +148,13 @@ class EseeCloudOptionsFlow(config_entries.OptionsFlow):
                             mode=NumberSelectorMode.BOX,
                             unit_of_measurement="s",
                         )
-                    )
+                    ),
+                    vol.Optional(
+                        CONF_GO2RTC_STREAM_URL,
+                        default=current_stream_url,
+                    ): TextSelector(
+                        TextSelectorConfig(type=TextSelectorType.TEXT)
+                    ),
                 }
             ),
         )
-

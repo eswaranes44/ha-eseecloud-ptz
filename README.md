@@ -15,13 +15,55 @@ connection is required for movement.
 | `5323_w6_l2` | 5323-W6-L2 | Verified | Physically verified |
 | `5323_w6_q` | 5323-W6-Q | Verified | Captured; verify physically before unattended use |
 
-The integration controls PTZ only. Continue using go2rtc for video, for example:
+The integration now creates the PTZ controls and, optionally, a **Live View**
+camera entity in the same Home Assistant device. The Live View uses your
+existing go2rtc RTSP stream; no ONVIF support is required.
+
+## go2rtc/WebRTC Live View
+
+The verified media route is:
+
+```text
+camera /livestream/12 -> go2rtc on Synology -> Home Assistant WebRTC
+```
+
+Your existing go2rtc source can remain on the Synology host:
 
 ```yaml
 streams:
-  car_porch_raw:
-    - "eseecloud://admin:@192.168.1.123:80/livestream/12"
+  eseecloud_camera:
+    - "eseecloud://admin:YOUR_URL_ENCODED_CREDENTIAL@<camera-ip>:80/livestream/12"
 ```
+
+If Home Assistant is using its built-in go2rtc integration, point it to the
+go2rtc API on the Synology host:
+
+```yaml
+go2rtc:
+  url: http://<go2rtc-host>:1984
+```
+
+When adding this EseeCloud device, enter the RTSP output of that go2rtc stream:
+
+```text
+rtsp://<go2rtc-host>:8554/eseecloud_camera
+```
+
+After restarting Home Assistant, the same EseeCloud device will contain:
+
+- Live View camera entity
+- Up, Down, Left and Right PTZ buttons
+- `eseecloud_ptz.move` action
+
+Home Assistant's go2rtc integration can provide the WebRTC proxy for camera
+stream sources. The camera entity also retains the RTSP source for fallback and
+recording through the normal stream integration.
+
+Do not put the real credential in GitHub, screenshots, or public YAML. The
+configuration-flow field is stored in Home Assistant's local config entry.
+
+The old standalone arrangement is still supported: leave the go2rtc field
+empty and the integration will create PTZ entities only.
 
 ## Installation
 
@@ -55,10 +97,13 @@ Open **Settings -> Devices & services -> Add integration**, search for
 - Camera username
 - The camera-specific 32-character derived credential
 - The matching protocol profile
+- Optional go2rtc RTSP stream URL, for example:
+  `rtsp://<go2rtc-host>:8554/eseecloud_camera`
 
 Setup performs authentication only; it does not move the camera. Four button
 entities are created: Up, Down, Left and Right. Default movement duration is
 0.5 seconds and can be changed under the integration's options (0.1-3.0 s).
+The go2rtc stream URL can also be changed under the integration options.
 
 ## Action
 

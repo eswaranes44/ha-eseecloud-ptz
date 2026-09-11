@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.3 - 2026-09-11
+
+- Add an optional Live View camera entity to the same integration.
+- Use the configured go2rtc RTSP source so Home Assistant's native go2rtc/WebRTC
+  path can render the camera without ONVIF.
+- Keep proprietary EseeCloud authentication and PTZ control unchanged.
+- Allow the go2rtc source URL to be changed from the integration options.
+
 ## 0.1.2 - 2026-09-11
 
 - Restore the verified IOTLink `0x2B` DATA request envelope used by the
