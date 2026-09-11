@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">EseeCloud Local PTZ</title>
+  <desc id="desc">A blue security camera inside a cloud.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1976d2"/>
+      <stop offset="1" stop-color="#512da8"/>
+    </linearGradient>
+    <linearGradient id="lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b3e5fc"/>
+      <stop offset="1" stop-color="#0288d1"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M126 294c-26-17-42-46-42-79 0-52 42-94 94-94 11 0 22 2 32 6 23-39 65-65 113-65 70 0 127 57 127 127 0 5 0 10-1 15 34 10 59 42 59 80 0 46-37 83-83 83H155c-23 0-42-19-42-42 0-13 5-24 13-31z" fill="#fff" opacity=".96"/>
+  <path d="M137 284h190c30 0 54 24 54 54v38H83v-38c0-30 24-54 54-54z" fill="#263238"/>
+  <rect x="165" y="254" width="205" height="119" rx="28" fill="#37474f" transform="rotate(-7 165 254)"/>
+  <circle cx="285" cy="309" r="55" fill="#102027"/>
+  <circle cx="285" cy="309" r="40" fill="url(#lens)"/>
+  <circle cx="272" cy="295" r="12" fill="#fff" opacity=".72"/>
+  <circle cx="379" cy="273" r="10" fill="#ef5350"/>
+  <path d="M221 384h128l23 35H198z" fill="#263238"/>
+  <rect x="184" y="419" width="202" height="18" rx="9" fill="#263238"/>
+</svg>

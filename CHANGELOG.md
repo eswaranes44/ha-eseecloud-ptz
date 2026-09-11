@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.4 - 2026-09-11
+
+- Add HACS/Home Assistant brand icon at `brand/icon.png`.
+- Mark both tested camera profiles as physically verified for all four PTZ
+  directions.
+- Expand the feature matrix and document the current light, siren, and
+  two-way-audio limitations.
+- Document release versioning and validation requirements.
+
 ## 0.1.3 - 2026-09-11
 
 - Add an optional Live View camera entity to the same integration.

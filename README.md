@@ -13,7 +13,7 @@ connection is required for movement.
 | Profile | Model | Authentication | Direction mapping |
 | --- | --- | --- | --- |
 | `5323_w6_l2` | 5323-W6-L2 | Verified | Physically verified |
-| `5323_w6_q` | 5323-W6-Q | Verified | Captured; verify physically before unattended use |
+| `5323_w6_q` | 5323-W6-Q | Verified | Physically verified |
 
 The integration now creates the PTZ controls and, optionally, a **Live View**
 camera entity in the same Home Assistant device. The Live View uses your
@@ -64,6 +64,24 @@ configuration-flow field is stored in Home Assistant's local config entry.
 
 The old standalone arrangement is still supported: leave the go2rtc field
 empty and the integration will create PTZ entities only.
+
+## Feature status
+
+| Feature | Status | Notes |
+| --- | --- | --- |
+| Camera Live View | Supported | Uses the configured go2rtc RTSP stream and Home Assistant WebRTC path. |
+| PTZ up/down/left/right | Supported | Tested on both verified camera profiles. |
+| Automatic Stop | Supported | Every bounded movement sends Stop, including the failure path. |
+| Device login | Supported | Device-specific P2PK credential; credentials are never logged. |
+| Camera light | Not yet implemented | Requires a verified proprietary command for these firmware profiles. |
+| Siren | Not yet implemented | Requires a verified proprietary command and safe timeout behavior. |
+| Two-way audio | Not yet implemented | Requires separate audio transport and codec verification. |
+| ONVIF | Not required | This integration communicates with the camera's proprietary local protocol. |
+
+The light, siren, and two-way-audio rows are intentionally marked as pending;
+the integration does not expose controls that have not been packet-verified.
+See [`docs/FEATURES.md`](docs/FEATURES.md) for the compatibility matrix and
+planned protocol work.
 
 ## Installation
 
@@ -158,3 +176,11 @@ TCP 10000 -> WebSocket -> ARQ -> IOTLink OPEN -> P2PK 0x8C login
 ```
 
 Known acknowledgement commands are `0x8D` for login and `0x15` for PTZ.
+
+## Versioning
+
+The integration version is kept in
+`custom_components/eseecloud_ptz/manifest.json` and must match the top entry
+in `CHANGELOG.md`. Releases use semantic versioning. Changes are validated by
+the GitHub Actions workflow with HACS validation, Hassfest, Python compilation,
+and protocol unit tests.
