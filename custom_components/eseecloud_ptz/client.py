@@ -293,7 +293,11 @@ class EseeCloudClient:
         sock: socket.socket, reader: Reader, sid: int, sequence: int, packet: bytes
     ) -> bytes:
         outer = MAGIC + struct.pack(
-            "<7I", 0x2B, 0x01000000, sequence, sid, 0, 0, len(packet)
+            # The verified direct-camera transport wraps both the 0x8C login
+            # and 0x14 PTZ packets in IOTLink DATA command 0x13.  Some app
+            # captures receive 0x2B responses, but using 0x2B for requests can
+            # produce a valid P2PK reply with authentication status -20.
+            "<7I", 0x13, 0x01000000, sequence, sid, 0, 0, len(packet)
         ) + packet
         reader.deadline = time.monotonic() + 10
         _send_binary(sock, outer)
@@ -349,4 +353,3 @@ class EseeCloudClient:
                 except Exception:  # Emergency Stop is best effort.
                     _LOGGER.exception("Emergency PTZ Stop was not acknowledged")
             self._close(sock)
-
