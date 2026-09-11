@@ -1,10 +1,16 @@
 # Changelog
 
+## 0.1.2 - 2026-09-11
+
+- Restore the verified IOTLink `0x2B` DATA request envelope used by the
+  successful long-login and PTZ probes.
+- Document that the earlier authentication failure was caused by credentials
+  being assigned to the wrong camera UID.
+
 ## 0.1.1 - 2026-09-11
 
-- Send P2PK login and PTZ requests through the verified IOTLink `0x13` DATA
-  envelope used by the successful direct-camera probes.
-- Retain support for receiving both `0x13` and `0x2B` response envelopes.
+- Superseded: incorrectly changed the request envelope to `0x13` while
+  investigating an authentication failure.
 
 ## 0.1.0 - 2026-09-11
 
