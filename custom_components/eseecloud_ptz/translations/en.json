@@ -1,0 +1,38 @@
+{
+  "title": "EseeCloud Local PTZ",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Add an EseeCloud PTZ camera",
+        "description": "The setup performs an authentication-only test. It does not move the camera.",
+        "data": {
+          "name": "Camera name",
+          "host": "IP address",
+          "port": "Control port",
+          "uid": "Numeric ESEE UID",
+          "username": "Camera username",
+          "derived_credential": "32-character derived credential",
+          "profile": "Protocol profile"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Unable to connect or complete the local protocol handshake.",
+      "invalid_auth": "The camera rejected this username or derived credential."
+    },
+    "abort": {
+      "already_configured": "This ESEE UID is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "PTZ movement options",
+        "data": {
+          "duration": "Default movement duration"
+        }
+      }
+    }
+  }
+}
+
